@@ -61,6 +61,10 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
       patent_id:{
         type: DataTypes.STRING,
         allowNull: false,
+        references: {
+          model: 'patients',
+          key: 'patient_id'
+        }
       }
     },
     {

@@ -17,7 +17,7 @@ interface PatientAttr {
 interface PatientCreationAttributes extends Optional<PatientAttr, 'patient_id'> {}
 
 // Define the Patient class extending Sequelize's Model
-export class Patient extends Model<PatientAttr, PatientCreationAttributes> implements PatientAttributes {
+export class Patient extends Model<PatientAttr, PatientCreationAttributes> implements PatientAttr {
   public patient_id!: number;
   public patient_name!: string;
   public email!: string;

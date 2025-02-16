@@ -1,6 +1,9 @@
 import sequelize from '../config/connection.js'
-import { UserFactory } from './Patient.js';
+import { PatientFactory } from './Patient.js';
+import { DrFactory } from './Doctors.js';
 
-const User = UserFactory(sequelize);
 
-export { User };
+const Doctor = DrFactory(sequelize);
+const Patient = PatientFactory(sequelize);
+
+export { Patient, Doctor };

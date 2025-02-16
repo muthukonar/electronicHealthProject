@@ -5,7 +5,7 @@ export const seedUsers = async () => {
     // Seeding Doctor data
   await Dr.bulkCreate([
     {dr_name: 'Muthu Konar', email: 'mk@clinic.com', password: 'password', specialization: 'Cardiology', patent_id: 1},
-    {dr_name: 'Chad Abramson', email: 'ca@clinic.com', password: 'password', specialization: 'Dermatology', patent_id: 2},
+    {dr_name: 'Chad Abramson', email: 'ca@clinic.com', password: 'password', specialization: 'Dermatology', patent_id: 1},
     {dr_name: 'Jason Gerdes', email: 'jg@clinic.com', password: 'password', specialization: 'Nuero', patent_id: 3},
     {dr_name: 'Jazmin Guillen', email: 'jaz@clinic.com', password: 'password', specialization: 'Pediatric', patent_id: 4},
   ], { individualHooks: true });

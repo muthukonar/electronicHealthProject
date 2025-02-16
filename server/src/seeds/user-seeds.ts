@@ -1,4 +1,4 @@
-import { Patient } from '../models/index.js';
+import { Dr , Patient } from '../models/index.js';
 
 export const seedUsers = async () => {
   

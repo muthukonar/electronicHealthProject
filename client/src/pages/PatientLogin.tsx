@@ -2,12 +2,12 @@ import { useState, FormEvent, ChangeEvent } from "react";
 
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authAPI";  // Import the login function from the API
-import { UserLogin } from "../interfaces/UserLogin";  // Import the interface for UserLogin
+import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 
-const Login = () => {
+const NewPatientLogin = () => {
   // State to manage the login form data
-  const [loginData, setLoginData] = useState<UserLogin>({
-    username: '',
+  const [loginData, setLoginData] = useState<PatientLogin>({
+    email: '',
     password: ''
   });
 
@@ -44,7 +44,7 @@ const Login = () => {
             className="form-input"
             type='text'
             name='username'
-            value={loginData.username || ''}
+            value={loginData.email || ''}
             onChange={handleChange}
           />
         </div>
@@ -67,5 +67,5 @@ const Login = () => {
     </div>
   )
 };
-
-export default Login;
+// this export might need to be looked at
+export default NewPatientLogin;

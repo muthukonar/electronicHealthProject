@@ -1,15 +1,15 @@
-import { UserLogin } from "../interfaces/PatientLogin";  // Import the UserLogin interface for typing userInfo
+import { PatientLogin } from "../interfaces/PatientLogin";  // Import the PatientLogin interface for typing patientInfo
 
-// Function to send a POST request to the '/auth/login' endpoint with user login information
-const login = async (userInfo: UserLogin) => {
+// Function to send a POST request to the '/auth/login' endpoint with patient login information
+const login = async (patientInfo: PatientLogin) => {
   try {
-    // Send a POST request to '/auth/login' with user login information in JSON format
+    // Send a POST request to '/auth/login' with patient login information in JSON format
     const response = await fetch('/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify(patientInfo)
     });
 
     // Throw error if response status is not OK (200-299)
@@ -23,20 +23,20 @@ const login = async (userInfo: UserLogin) => {
 
     return data;  // Return the data received from the server
   } catch (err) {
-    console.log('Error from user login: ', err);  // Log any errors that occur during fetch
-    return Promise.reject('Could not fetch user info');  // Return a rejected promise with an error message
+    console.log('Error from patient login: ', err);  // Log any errors that occur during fetch
+    return Promise.reject('Could not fetch patient info');  // Return a rejected promise with an error message
   }
 }
 
-const signUp = async (userInfo: UserLogin) => {
+const signUp = async (patientInfo: PatientLogin) => {
   try {
-    // Send a POST request to '/auth/login' with user login information in JSON format
+    // Send a POST request to '/auth/login' with patient login information in JSON format
     const response = await fetch('/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(userInfo)
+      body: JSON.stringify(patientInfo)
     });
 
     // Throw error if response status is not OK (200-299)
@@ -50,8 +50,8 @@ const signUp = async (userInfo: UserLogin) => {
 
     return data;  // Return the data received from the server
   } catch (err) {
-    console.log('Error from user login: ', err);  // Log any errors that occur during fetch
-    return Promise.reject('Could not fetch user info');  // Return a rejected promise with an error message
+    console.log('Error from patient login: ', err);  // Log any errors that occur during fetch
+    return Promise.reject('Could not fetch patient info');  // Return a rejected promise with an error message
   }
 }
 

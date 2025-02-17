@@ -5,7 +5,7 @@ import ErrorPage from "./ErrorPage";
 import UserList from '../components/Users';
 import auth from '../utils/auth';
 
-const Home = () => {
+const Homepage = () => {
 
     const [users, setUsers] = useState<PatientData[]>([]);
     const [error, setError] = useState(false);
@@ -57,4 +57,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Homepage;

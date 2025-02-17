@@ -1,21 +1,21 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
-import { login } from "../api/authAPI";  // Import the login function from the API
-import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
+import { signUp } from "../api/authAPI";  // Import the login function from the API
+import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the interface for UserLogin
 
-const Login = () => {
+const DrSignup = () => {
   // State to manage the login form data
-  const [loginData, setLoginData] = useState<UserLogin>({
-    username: '',
+  const [signUpData, setSignUpData] = useState<DoctorLogin>({
+    email: '',
     password: ''
   });
 
   // Handle changes in the input fields
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setLoginData({
-      ...loginData,
+    setSignUpData({
+      ...signUpData,
       [name]: value
     });
   };
@@ -24,27 +24,27 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      // Call the login API endpoint with loginData
-      const data = await login(loginData);
-      // If login is successful, call Auth.login to store the token in localStorage
+      // Call the sign up API endpoint with signUpData
+      const data = await signUp(signUpData);
+      // If sign up is successful, call Auth.login to store the token in localStorage
       Auth.login(data.token);
     } catch (err) {
-      console.error('Failed to login', err);  // Log any errors that occur during login
+      console.error('Failed to login', err);  // Log any errors that occur during sign up
     }
   };
 
   return (
     <div className='form-container'>
-      <form className='form login-form' onSubmit={handleSubmit}>
-        <h1>Login</h1>
+      <form className='form sign-up-form' onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
         {/* Username input field */}
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input 
             className="form-input"
             type='text'
-            name='username'
-            value={loginData.username || ''}
+            name='email'
+            value={signUpData.email || ''}
             onChange={handleChange}
           />
         </div>
@@ -55,17 +55,17 @@ const Login = () => {
             className="form-input"
             type='password'
             name='password'
-            value={loginData.password || ''}
+            value={signUpData.password || ''}
             onChange={handleChange}
           />
         </div>
-        {/* Submit button for the login form */}
+        {/* Submit button for the sign up form */}
         <div className="form-group">
-          <button className="btn btn-primary" type='submit'>Login</button>
+          <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
       </form>
     </div>
   )
 };
 
-export default Login;
+export default DrSignup;

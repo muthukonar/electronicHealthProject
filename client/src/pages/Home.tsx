@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from "react";
-import { retrieveUsers } from "../api/userAPI";
+import { retrieveUsers } from "../api/userPatientAPI";
 import type { PatientData } from "../interfaces/PatientData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../components/Users';

@@ -8,7 +8,7 @@ interface DrAttr {
   email: string;
   password: string;
   specialization: string;
-  patent_id: number;
+  patient_id: string [];
 }
 
 // Define the optional attributes for creating a new User
@@ -21,7 +21,7 @@ export class Dr extends Model<DrAttr, DrCreationAttributes> implements DrAttr {
   public email!: string;
   public password!: string;
   public specialization!: string;
-  public patent_id!: number;
+  public patient_id!: string [];
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -58,7 +58,7 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      patent_id:{
+      patient_id:{
         type: DataTypes.STRING,
         allowNull: false,
         references: {

@@ -2,7 +2,7 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import { retrieveUsers } from "../api/userAPI";
 import type { PatientData } from "../interfaces/PatientData";
 import ErrorPage from "./ErrorPage";
-import UserList from '../components/Users';
+import UserList from '../components/Patients';
 import auth from '../utils/auth';
 
 const Homepage = () => {

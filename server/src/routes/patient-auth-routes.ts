@@ -52,12 +52,12 @@ export const patientSignUp = async (req: Request, res: Response) => {
 }
 
 // Create a new router instance for patient
-const patientRouter = Router();
+const patientAuthRouter = Router();
 
 // POST /login - Login a patient
-patientRouter.post('/patientLogin', patientLogin);  // Define the login route
+patientAuthRouter.post('/patientLogin', patientLogin);  // Define the login route
 
 // POST /users - Create a new patient
-patientRouter.post('/patientSignup', patientSignUp);
+patientAuthRouter.post('/patientSignup', patientSignUp);
 
-export default patientRouter;  // Export the router instance
+export default patientAuthRouter;  // Export the router instance

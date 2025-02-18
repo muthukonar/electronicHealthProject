@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { retrieveUsers } from "../api/userPatientAPI";
 import type { PatientData } from "../interfaces/PatientData";
@@ -11,20 +13,17 @@ import { Link } from "react-router-dom";
 
 
 const Homepage = () => {
+  return (
+    <div className="hp-loginlinks">
+      <h1>Welcome to DocConnection</h1>
+      <p>Please choose your login type:</p>
 
-    const navigate = useNavigate();
-
-    return (
-      <div className="hp-loginlinks">
-        <h1>Welcome to DocConnection</h1>
-        <p>Please choose your login type:</p>
-  
-      {/* Doctor Login Button */}
+      {/* Doctor login */}
       <Link to="/DoctorLogin" className="btn btn-primary">
         Doctor Login
       </Link>
 
-      {/* Patient Login Button */}
+      {/* Patient login */}
       <Link to="/PatientLogin" className="btn btn-secondary">
         Patient Login
       </Link>

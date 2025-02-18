@@ -1,8 +1,13 @@
 import { useState, FormEvent, ChangeEvent } from "react";
+
+
+import Auth from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
+import { login } from "../api/authPatientAPI";  // Import the login function from the API
 import DoctorAuthService from '../utils/doctorAuth';
 import PatientAuthService from "../utils/patientAuth";
 import { DoctorLogin } from "../interfaces/DoctorLogin";  
 import { Link } from "react-router-dom";
+
 
 const DrLogin = () => {
   // State to manage the login form data

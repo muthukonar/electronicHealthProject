@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
-import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
+import Auth from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 import { Link } from "react-router-dom";

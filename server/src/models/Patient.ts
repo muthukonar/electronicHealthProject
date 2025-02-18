@@ -11,6 +11,7 @@ interface PatientAttr {
   weight?: number;
   age?: number;
   dr_id?: number;
+  notes?: string;
 }
 
 // Define the optional attributes for creating a new Patient
@@ -26,6 +27,7 @@ export class Patient extends Model<PatientAttr, PatientCreationAttributes> imple
   public weight?: number;
   public age?: number;
   public dr_id?: number;
+  public notes?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -80,7 +82,11 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL',
-      }
+      },
+      notes: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       tableName: 'patients',

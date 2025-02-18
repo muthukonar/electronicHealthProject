@@ -3,14 +3,30 @@ import type { Request, Response } from 'express';
 import { Patient } from '../../models/index.js';
 
 const patientRouter = express.Router();
+const patients = [
+  {
+    id: 1,
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    doctor_id: 1,
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    email: 'jane.smith@example.com',
+    doctor_id: 2,
+  }
+];
 
-// GET /patients - Get all patient
-patientRouter.get('/', async (_req: Request, res: Response) => {
+// GET /patients - Get all patients for a specific doctor
+patientRouter.get('/:doctorId', async (req: Request, res: Response) => {
+  const { doctorId } = req.params;
   try {
-    const patient = await Patient.findAll({
+    const patients = await Patient.findAll({
+      where: { doctor_id: doctorId },
       attributes: { exclude: ['password'] }
     });
-    res.json(patient);
+    res.json(patients);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -66,6 +82,18 @@ patientRouter.delete('/:patient_id', async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
+});
+
+patientRouter.post("/send-note", (req, res) => {
+  const { patientId, noteId, noteText } = req.body;
+
+  const patient = patients.find((p) => p.id === parseInt(patientId));
+  if (!patient) {
+    return res.status(404).json({ message: "Patient not found" });
+  }
+
+  patient.notes.push({ id: noteId, text: noteText });
+  res.json({ message: "Note sent successfully!", patient });
 });
 
 export { patientRouter as patientRouter };

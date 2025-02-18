@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
-import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
+import Auth from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 
@@ -62,6 +62,17 @@ const NewPatientLogin = () => {
         {/* Submit button for the login form */}
         <div className="form-group">
           <button className="btn btn-primary" type='submit'>Login</button>
+
+
+
+
+          <h1>Not yet a member? Signup Here</h1>
+  
+  {/* doctor login */}
+        <button className="btn btn-secondary" onClick={() => navigate('/DrSignup')}>
+          Doctor Signup
+        </button>
+
         </div>
       </form>
     </div>

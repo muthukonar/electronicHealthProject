@@ -69,7 +69,7 @@ const DrLogin = () => {
       <div className="hp-loginlinks">
         <h4>Not yet enrolled? Signup here:</h4>
       <button className="btn btn-secondary" onClick={() => navigate('/DoctorSignup')}>
-          Doctor Signup
+          Doctor Signup Pg
         </button>
         </div>
 

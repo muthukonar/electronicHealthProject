@@ -1,8 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
-import { login } from "../api/authPatientAPI";  // Import the login function from the API
-import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the interface for UserLogin
+import DoctorAuthService from '../utils/doctorAuth';
+import PatientAuthService from "../utils/patientAuth";
+import { DoctorLogin } from "../interfaces/DoctorLogin";  
+import { Link } from "react-router-dom";
 
 const DrLogin = () => {
   // State to manage the login form data
@@ -64,6 +64,13 @@ const DrLogin = () => {
           <button className="btn btn-primary" type='submit'>Login</button>
         </div>
       </form>
+
+      <div> <h1>Not yet a member? Signup Here</h1>
+  
+  <Link to="/DoctorSignup" className="btn btn-primary">
+  Doctor Signup
+</Link>
+        </div>
     </div>
   )
 };

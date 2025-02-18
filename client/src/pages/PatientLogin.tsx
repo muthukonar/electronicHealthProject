@@ -3,6 +3,7 @@ import { useState, FormEvent, ChangeEvent } from "react";
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
+import { Link } from "react-router-dom";
 
 const NewPatientLogin = () => {
   // State to manage the login form data
@@ -64,8 +65,16 @@ const NewPatientLogin = () => {
           <button className="btn btn-primary" type='submit'>Login button</button>
         </div>
       </form>
+
+     <div> <h1>Not yet a member? Signup Here</h1>
+  
+  <Link to="/PatientSignup" className="btn btn-primary">
+  Patient Signup
+</Link>
+        </div>
     </div>
   )
 };
 // this export might need to be looked at
 export default NewPatientLogin;
+

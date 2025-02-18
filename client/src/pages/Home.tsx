@@ -7,6 +7,7 @@ import UserList from '../components/Users';
 import DoctorAuthService from '../utils/doctorAuth';
 import PatientAuthService from "../utils/patientAuth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Homepage = () => {
@@ -18,17 +19,17 @@ const Homepage = () => {
         <h1>Welcome to DocConnection</h1>
         <p>Please choose your login type:</p>
   
-  {/* doctor login */}
-        <button className="btn btn-primary" onClick={() => navigate('/DoctorLogin')}>
-          Doctor Login
-        </button>
-  
-     {/*patient login*/}
-        <button className="btn btn-secondary" onClick={() => navigate('/PatientLogin')}>
-          Patient Login
-        </button>
-      </div>
-    );
-  };
+      {/* Doctor Login Button */}
+      <Link to="/DoctorLogin" className="btn btn-primary">
+        Doctor Login
+      </Link>
+
+      {/* Patient Login Button */}
+      <Link to="/PatientLogin" className="btn btn-secondary">
+        Patient Login
+      </Link>
+    </div>
+  );
+};
   
   export default Homepage;

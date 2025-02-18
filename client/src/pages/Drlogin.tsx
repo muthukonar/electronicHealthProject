@@ -4,7 +4,7 @@ import Auth from '../utils/doctorAuth';  // Import the Auth utility for managing
 import { login } from "../api/authAPI";  // Import the login function from the API
 import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the interface for UserLogin
 
-const Login = () => {
+const DrLogin = () => {
   // State to manage the login form data
   const [loginData, setLoginData] = useState<DoctorLogin>({
     email: '',
@@ -68,4 +68,4 @@ const Login = () => {
   )
 };
 
-export default Login;
+export default DrLogin;

@@ -7,10 +7,10 @@ interface PatientAttr {
   patient_name: string;
   email: string;
   password: string;
-  height: number;
-  weight: number;
-  age: number;
-  dr_id: number;
+  height?: number;
+  weight?: number;
+  age?: number;
+  dr_id?: number;
 }
 
 // Define the optional attributes for creating a new Patient
@@ -22,15 +22,15 @@ export class Patient extends Model<PatientAttr, PatientCreationAttributes> imple
   public patient_name!: string;
   public email!: string;
   public password!: string;
-  public height!: number;
-  public weight!: number;
-  public age!: number;
-  public dr_id!: number;
+  public height?: number;
+  public weight?: number;
+  public age?: number;
+  public dr_id?: number;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  // Method to hash and set the password for the Patient
+  // Method to hash and set the password for the patient
   public async setPassword(password: string) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
@@ -53,6 +53,7 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
@@ -60,42 +61,42 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
       },
       height: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       weight: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       age: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       dr_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'doctors',
           key: 'dr_id',
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
       }
     },
     {
-      tableName: 'patients',  // Name of the table in PostgreSQL
-      sequelize,// The Sequelize instance that connects to PostgreSQL
+      tableName: 'patients',
+      sequelize,
       hooks: {
-        // Before creating a new Patient, hash and set the password
-        beforeCreate: async (user: Patient) => {
-          await user.setPassword(user.password);
+        beforeCreate: async (patient: Patient) => {
+          await patient.setPassword(patient.password);
         },
-        // Before updating a Patient, hash and set the new password if it has changed
-        beforeUpdate: async (user: Patient) => {
-          if (user.changed('password')) {
-            await user.setPassword(user.password);
+        beforeUpdate: async (patient: Patient) => {
+          if (patient.changed('password')) {
+            await patient.setPassword(patient.password);
           }
         },
-      }
+      },
     }
   );
 
-  return Patient;  // Return the initialized Patient model
+  return Patient;
 }

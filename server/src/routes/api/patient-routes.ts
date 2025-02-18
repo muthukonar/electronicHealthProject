@@ -69,3 +69,5 @@ patientRouter.delete('/:patient_id', async (req: Request, res: Response) => {
 });
 
 export { patientRouter as patientRouter };
+
+  

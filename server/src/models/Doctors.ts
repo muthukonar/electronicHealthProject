@@ -1,41 +1,39 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 import bcrypt from 'bcrypt';
 
-// Define the attributes for the User model
+// Define the attributes for the Doctor model
 interface DrAttr {
   dr_id: number;
   dr_name: string;
   email: string;
   password: string;
-  specialization: string;
-  patent_id: number;
+  specialization?: string;
 }
 
-// Define the optional attributes for creating a new User
+// Define the optional attributes for creating a new Doctor
 interface DrCreationAttributes extends Optional<DrAttr, 'dr_id'> {}
 
-// Define the User class extending Sequelize's Model
+// Define the Doctor class extending Sequelize's Model
 export class Dr extends Model<DrAttr, DrCreationAttributes> implements DrAttr {
   public dr_id!: number;
   public dr_name!: string;
   public email!: string;
   public password!: string;
-  public specialization!: string;
-  public patent_id!: number;
+  public specialization?: string;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 
-  // Method to hash and set the password for the user
+  // Method to hash and set the password for the doctor
   public async setPassword(password: string) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
   }
 }
 
-// Define the UserFactory function to initialize the User model
+// Define the DoctorFactory function to initialize the Doctor model
 export function DrFactory(sequelize: Sequelize): typeof Dr {
-    Dr.init(
+  Dr.init(
     {
       dr_id: {
         type: DataTypes.INTEGER,
@@ -49,41 +47,32 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      specialization:{
+      specialization: {
         type: DataTypes.STRING,
-        allowNull: false,
-      },
-      patent_id:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        references: {
-          model: 'patients',
-          key: 'patient_id'
-        }
+        allowNull: true,
       }
     },
     {
-      tableName: 'doctors',  // Name of the table in PostgreSQL
-      sequelize,// The Sequelize instance that connects to PostgreSQL
+      tableName: 'doctors',
+      sequelize,
       hooks: {
-        // Before creating a new user, hash and set the password
-        beforeCreate: async (user: Dr) => {
-          await user.setPassword(user.password);
+        beforeCreate: async (doctor: Dr) => {
+          await doctor.setPassword(doctor.password);
         },
-        // Before updating a user, hash and set the new password if it has changed
-        beforeUpdate: async (user: Dr) => {
-          if (user.changed('password')) {
-            await user.setPassword(user.password);
+        beforeUpdate: async (doctor: Dr) => {
+          if (doctor.changed('password')) {
+            await doctor.setPassword(doctor.password);
           }
         },
-      }
+      },
     }
   );
 
-  return Dr;  // Return the initialized User model
+  return Dr;
 }

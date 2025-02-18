@@ -10,7 +10,7 @@ patientRouter.get('/', async (_req: Request, res: Response) => {
     const patient = await Patient.findAll({
       attributes: { exclude: ['password'] }
     });
-    res.json(patients);
+    res.json(patient);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -69,3 +69,5 @@ patientRouter.delete('/:patient_id', async (req: Request, res: Response) => {
 });
 
 export { patientRouter as patientRouter };
+
+  

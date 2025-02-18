@@ -34,8 +34,8 @@ export const patientLogin = async (req: Request, res: Response) => {
 
 export const patientSignUp = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
-    const newPatient = await Patient.create({ email, password });
+    const { patient_name, email, password } = req.body;
+    const newPatient = await Patient.create({ patient_name, email, password });
 
     console.log(newPatient);
     

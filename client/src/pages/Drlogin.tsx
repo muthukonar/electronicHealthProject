@@ -1,6 +1,4 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-
 import Auth from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
 import DoctorAuthService from '../utils/doctorAuth';

@@ -64,6 +64,16 @@ const PatientSignup = () => {
           <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
       </form>
+
+
+       {/*patient signup button*/}
+       <div className="hp-loginlinks">
+        <h4>Not yet enrolled? Signup here:</h4>
+      <button className="btn btn-secondary" onClick={() => navigate('/PatientSignup')}>
+          Patient Signup
+        </button>
+        </div>
+
     </div>
   )
 };

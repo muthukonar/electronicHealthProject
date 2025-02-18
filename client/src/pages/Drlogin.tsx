@@ -32,7 +32,13 @@ const DrLogin = () => {
       // Call the login API endpoint with loginData
       const data = await login(loginData);
       // If login is successful, call Auth.login to store the token in localStorage
-      Auth.login(data.token);
+      if (data.token && data.doctorId) {
+        Auth.login(data.token); // Store token
+        localStorage.setItem("doctorId", data.doctorId); // Store doctorId
+        login(data.doctorId); // Pass doctorId to parent component
+      } else {
+        alert("Login failed. Invalid credentials.");
+      }
     } catch (err) {
       console.error('Failed to login', err);  // Log any errors that occur during login
     }
@@ -44,11 +50,11 @@ const DrLogin = () => {
         <h1>Login</h1>
         {/* Username input field */}
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input 
             className="form-input"
-            type='text'
-            name='username'
+            type='email'
+            name='email'
             value={loginData.email || ''}
             onChange={handleChange}
           />

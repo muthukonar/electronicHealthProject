@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
+import { ApiMessage } from "../interfaces/ApiMessage";
+
+interface Patient {
+  id: number;
+  name: string;
+}
 
 const DoctorDropdown: React.FC = () => {
   const doctorId = localStorage.getItem("doctorId");
   const [selectedNote, setSelectedNote] = useState<string> ("");
   const [selectedPatient, setSelectedPatient] = useState<string> ("");
-  const [patients, setPatients] = useState<any>([]);
-  const [apiData, setApiData] = useState<any>(null);
+  const [patients, setPatients] = useState<Patient[]>([]);
+  
+  const [apiData, setApiData] = useState<ApiMessage | null>(null);
 
   // Fetch patients for this doctor
   useEffect(() => {

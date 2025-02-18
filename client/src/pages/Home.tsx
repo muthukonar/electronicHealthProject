@@ -1,60 +1,33 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import { retrieveUsers } from "../api/userAPI";
 import type { PatientData } from "../interfaces/PatientData";
+import type { DoctorData } from "../interfaces/DoctorData";
 import ErrorPage from "./ErrorPage";
 import UserList from '../components/Users';
-import auth from '../utils/auth';
+import DoctorAuthService from '../utils/doctorAuth';
+import PatientAuthService from "../utils/patientAuth";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
 
-    const [users, setUsers] = useState<PatientData[]>([]);
-    const [error, setError] = useState(false);
-    const [loginCheck, setLoginCheck] = useState(false);
-
-    useEffect(() => {
-        if (loginCheck) {
-            fetchUsers();
-        }
-    }, [loginCheck]);
-
-    useLayoutEffect(() => {
-        checkLogin();
-    }, []);
-
-    const checkLogin = () => {
-        if (auth.loggedIn()) {
-            setLoginCheck(true);
-        }
-    };
-
-    const fetchUsers = async () => {
-        try {
-            const data = await retrieveUsers();
-            setUsers(data)
-        } catch (err) {
-            console.error('Failed to retrieve tickets:', err);
-            setError(true);
-        }
-    }
-
-    if (error) {
-        return <ErrorPage />;
-    }
+    const navigate = useNavigate();
 
     return (
-        <>
-            {
-                !loginCheck ? (
-                    <div className='login-notice'>
-                        <h1>
-                            Login to view all your friends!
-                        </h1>
-                    </div>
-                ) : (
-                    <UserList users={users} />
-                )}
-        </>
+      <div className="hp-loginlinks">
+        <h1>Welcome to DocConnection</h1>
+        <p>Please choose your login type:</p>
+  
+  {/* doctor login */}
+        <button className="btn btn-primary" onClick={() => navigate('/DoctorLogin')}>
+          Doctor Login
+        </button>
+  
+     {/*patient login*/}
+        <button className="btn btn-secondary" onClick={() => navigate('/PatientLogin')}>
+          Patient Login
+        </button>
+      </div>
     );
-};
-
-export default Homepage;
+  };
+  
+  export default Homepage;

@@ -1,7 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import DoctorAuthService from '../utils/doctorAuth';
 import PatientAuthService from "../utils/patientAuth";
-import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the interface for UserLogin
+import { DoctorLogin } from "../interfaces/DoctorLogin";  
+import { Link } from "react-router-dom";
 
 const DrLogin = () => {
   // State to manage the login form data
@@ -64,14 +65,12 @@ const DrLogin = () => {
         </div>
       </form>
 
-      {/*doctor login*/}
-      <div className="hp-loginlinks">
-        <h4>Not yet enrolled? Signup here:</h4>
-      <button className="btn btn-secondary" onClick={() => navigate('/DoctorSignup')}>
-          Doctor Signup Pg
-        </button>
+      <div> <h1>Not yet a member? Signup Here</h1>
+  
+  <Link to="/DoctorSignup" className="btn btn-primary">
+  Doctor Signup
+</Link>
         </div>
-
     </div>
   )
 };

@@ -1,13 +1,9 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
-<<<<<<< HEAD
 import Auth from '../utils/auth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
-=======
-import Auth from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
-import { login } from "../api/authAPI";  // Import the login function from the API
->>>>>>> main
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
+import { Link } from "react-router-dom";
 
 const NewPatientLogin = () => {
   // State to manage the login form data
@@ -66,30 +62,19 @@ const NewPatientLogin = () => {
         </div>
         {/* Submit button for the login form */}
         <div className="form-group">
-          <button className="btn btn-primary" type='submit'>Login</button>
-
-
-
-
-          <h1>Not yet a member? Signup Here</h1>
-  
-  {/* doctor login */}
-        <button className="btn btn-secondary" onClick={() => navigate('/DrSignup')}>
-          Doctor Signup
-        </button>
-
+          <button className="btn btn-primary" type='submit'>Login button</button>
         </div>
       </form>
 
-      <h1>Not yet a member? Signup Here</h1>
+     <div> <h1>Not yet a member? Signup Here</h1>
   
-  {/* doctor login */}
-        <button className="btn btn-secondary" onClick={() => navigate('/DrSignup')}>
-          Doctor Signup
-        </button>
+  <Link to="/PatientSignup" className="btn btn-primary">
+  Patient Signup
+</Link>
         </div>
     </div>
   )
 };
 // this export might need to be looked at
 export default NewPatientLogin;
+

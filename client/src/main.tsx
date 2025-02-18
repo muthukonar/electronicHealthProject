@@ -6,8 +6,11 @@ import App from './App.tsx';
 
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
-import Login from './pages/PatientLogin.tsx';
-import SignUp from './pages/SignUp.tsx';
+import NewPatientLogin from './pages/PatientLogin.tsx';
+import DrLogin from './pages/Drlogin.tsx'
+import PatientSignup from './pages/PatientSignup.tsx';
+import DrSignUp from './pages/DrSignup.tsx'
+
 
 const router = createBrowserRouter([
   {
@@ -20,13 +23,21 @@ const router = createBrowserRouter([
         element: <Home />
       }, 
       {
-        path: '/login',
-        element: <Login />
+        path: '/Drlogin',
+        element: <DrLogin />
+      },
+      {
+        path: '/patientlogin',
+        element: <NewPatientLogin />
       },
       {
         path: '/signup',
-        element: <SignUp />
-      }, 
+        element: <DrSignUp/>
+      },
+      {
+        path: '/patientsignup',
+        element: <PatientSignup />
+      } 
     ]
   }
 ])

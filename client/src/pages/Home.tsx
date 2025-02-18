@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 import { useState, useEffect, useLayoutEffect } from "react";
 import { retrieveUsers } from "../api/userPatientAPI";
 import type { PatientData } from "../interfaces/PatientData";
@@ -7,28 +9,26 @@ import UserList from '../components/Users';
 import DoctorAuthService from '../utils/doctorAuth';
 import PatientAuthService from "../utils/patientAuth";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 const Homepage = () => {
+  return (
+    <div className="hp-loginlinks">
+      <h1>Welcome to DocConnection</h1>
+      <p>Please choose your login type:</p>
 
-    const navigate = useNavigate();
+      {/* Doctor login */}
+      <Link to="/DoctorLogin" className="btn btn-primary">
+        Doctor Login
+      </Link>
 
-    return (
-      <div className="hp-loginlinks">
-        <h1>Welcome to DocConnection</h1>
-        <p>Please choose your login type:</p>
-  
-  {/* doctor login */}
-        <button className="btn btn-primary" onClick={() => navigate('/DoctorLogin')}>
-          Doctor Login
-        </button>
-  
-     {/*patient login*/}
-        <button className="btn btn-secondary" onClick={() => navigate('/PatientLogin')}>
-          Patient Login
-        </button>
-      </div>
-    );
-  };
+      {/* Patient login */}
+      <Link to="/PatientLogin" className="btn btn-secondary">
+        Patient Login
+      </Link>
+    </div>
+  );
+};
   
   export default Homepage;

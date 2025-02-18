@@ -4,8 +4,8 @@ import './index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
-import patientLogin from './pages/PatientLogin.tsx';
-import doctorLogin from ',/pages/DrLogin.tsx'
+import NewPatientLogin from './pages/PatientLogin.tsx';
+import DrLogin from './pages/Drlogin.tsx'
 import PatientSignup from './pages/PatientSignup.tsx';
 import DrSignUp from './pages/DrSignup.tsx'
 
@@ -21,13 +21,21 @@ const router = createBrowserRouter([
         element: <Home />
       }, 
       {
-        path: '/drlogin',
-        element: <Login />
+        path: '/Drlogin',
+        element: <DrLogin />
+      },
+      {
+        path: '/patientlogin',
+        element: <NewPatientLogin />
       },
       {
         path: '/signup',
-        element: <SignUp />
-      }, 
+        element: <DrSignUp/>
+      },
+      {
+        path: '/patientsignup',
+        element: <PatientSignup />
+      } 
     ]
   }
 ])

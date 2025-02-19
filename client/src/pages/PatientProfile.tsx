@@ -1,7 +1,7 @@
 
 import React from "react";
 import { PatientData } from "../interfaces/PatientData";
-import { PatientLogin } from "../interfaces/PatientLogin";
+
 
 interface PatientProfileProps {
   patient: PatientData;

@@ -5,7 +5,7 @@ import { login } from "../api/authDoctorAPI";  // Import the login function from
 // import PatientAuthService from "../utils/patientAuth";
 import { DoctorLogin } from "../interfaces/DoctorLogin";  
 import { Link, useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+
 
 
 const DrLogin = () => {

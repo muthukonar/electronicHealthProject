@@ -1,9 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-import Auth from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
+import PatientAuthService from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NewPatientLogin = () => {
   // State to manage the login form data
@@ -23,7 +22,7 @@ const NewPatientLogin = () => {
       [name]: value
     });
   };
-
+const navigate = useNavigate();
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -31,13 +30,11 @@ const NewPatientLogin = () => {
       // Call the login API endpoint with loginData
       const data = await login(loginData);
       // If login is successful, call Auth.login to store the token in localStorage
-      if (data.token && data.patientId) {
-              Auth.login(data.token); // Store token
-              localStorage.setItem("patientId", data.patientId); // Store patientId
-              //!sets image_url to local storage
-              localStorage.setItem("image_url", data.image_url);
-              //!------
+      if (data.token) {
+              PatientAuthService.login(data.token); // Store token
+              // localStorage.setItem("patientId", data.patientId); // Store patientId
               setIsLoggedIn(true);
+              navigate('/PatientProfile');
             } else {
               alert("Login failed. Invalid credentials.");
             }
@@ -52,11 +49,11 @@ const NewPatientLogin = () => {
         <h1>Login</h1>
         {/* Username input field */}
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input 
             className="form-input"
-            type='text'
-            name='username'
+            type='email'
+            name='email'
             value={loginData.email || ''}
             onChange={handleChange}
           />

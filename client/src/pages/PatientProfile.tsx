@@ -2,6 +2,7 @@
 import React from "react";
 import { PatientData } from "../interfaces/PatientData";
 
+
 interface PatientProfileProps {
   patient: PatientData;
 }

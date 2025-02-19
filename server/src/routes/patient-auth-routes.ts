@@ -29,12 +29,13 @@ export const patientLogin = async (req: Request, res: Response) => {
 
   // Generate a JWT token for the authenticated user
   const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
-  return res.json({ token,
-    //!added patient_name and image url to the return
-     patient_name: patient.patient_name,
-     image_url: patient.image_url });  // Send the token as a JSON response
+  console.log(token);
+  return res.json({ token });  // Send the token as a JSON response
 };
-
+//return res.json({ token,
+    //!added patient_name and image url to the return
+   // patient_name: patient.patient_name,
+    //image_url: patient.image_url });
 export const patientSignUp = async (req: Request, res: Response) => {
   try {
     const { patient_name, email, password } = req.body;

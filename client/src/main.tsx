@@ -7,7 +7,9 @@ import Home from './pages/Home.tsx';
 import NewPatientLogin from './pages/PatientLogin.tsx';
 import DrLogin from './pages/Drlogin.tsx'
 import PatientSignup from './pages/PatientSignup.tsx';
-import DrSignUp from './pages/DrSignup.tsx'
+import DrSignUp from './pages/DrSignup.tsx';
+import PatientProfile from './pages/PatientProfile.tsx';
+import DoctorProfile from './pages/DrProfile.tsx';
 
 
 const router = createBrowserRouter([
@@ -25,17 +27,26 @@ const router = createBrowserRouter([
         element: <DrLogin />
       },
       {
-        path: '/patientlogin',
+        path: '/PatientLogin',
         element: <NewPatientLogin />
       },
       {
-        path: '/signup',
+        path: '/DrSignup',
         element: <DrSignUp/>
       },
       {
-        path: '/patientsignup',
+        path: '/PatientSignup',
         element: <PatientSignup />
-      } 
+
+      },
+      {
+        path: '/PatientProfile',
+        element: <PatientProfile patient={{ patient_id: 0, patient_name: '', email: '', height: 0, weight: 0, age: 0, dr_id: 0 }} />
+      },
+      {
+        path: '/DrProfile',
+        element: <DoctorProfile doctor={{dr_id: 0, dr_name: '', email: '', specialization: '', patient_id:[]}} />
+      } ,
     ]
   }
 ])

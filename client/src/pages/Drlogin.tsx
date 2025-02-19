@@ -1,10 +1,11 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-import Auth from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
-import { login } from "../api/authPatientAPI";  // Import the login function from the API
+import DrAuthService from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
+import { login } from "../api/authDoctorAPI";  // Import the login function from the API
 // import DoctorAuthService from '../utils/doctorAuth';
 // import PatientAuthService from "../utils/patientAuth";
 import { DoctorLogin } from "../interfaces/DoctorLogin";  
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 
 const DrLogin = () => {
@@ -22,18 +23,21 @@ const DrLogin = () => {
       [name]: value
     });
   };
-
+  const navigate = useNavigate();
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
       // Call the login API endpoint with loginData
       const data = await login(loginData);
+      console.log(data);
       // If login is successful, call Auth.login to store the token in localStorage
-      if (data.token && data.doctorId) {
-        Auth.login(data.token); // Store token
-        localStorage.setItem("doctorId", data.doctorId); // Store doctorId
+      if (data.token) {
+        DrAuthService.login(data.token); // Store token
+        // localStorage.setItem(data.token); // Store doctorId
         setIsLoggedIn(true);
+        // navigate to the doctor profile page
+        navigate('/DrProfile');
       } else {
         alert("Login failed. Invalid credentials.");
       }

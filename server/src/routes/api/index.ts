@@ -3,9 +3,9 @@ import { patientRouter } from './patient-routes.js';
 import { drRouter } from './dr-routes.js';
 
 
-const router = Router();
+const apiRouter = Router();
 
-router.use('/patients', patientRouter);
-router.use('/doctors', drRouter);
+apiRouter.use('/api/patients', patientRouter);
+apiRouter.use('/api/doctors', drRouter);
 
-export default router;
+export default apiRouter;

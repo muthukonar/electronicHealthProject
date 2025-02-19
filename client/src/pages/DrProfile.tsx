@@ -1,6 +1,7 @@
 import { DoctorData } from "../interfaces/DoctorData";
 import React from "react";
 
+
 interface DoctorProfileProps {
     doctor: DoctorData;
   }

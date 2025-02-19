@@ -29,6 +29,7 @@ export const patientLogin = async (req: Request, res: Response) => {
 
   // Generate a JWT token for the authenticated user
   const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+  console.log(token);
   return res.json({ token });  // Send the token as a JSON response
 };
 

@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 const DrLogin = () => {
   // State to manage the login form data
   const [loginData, setLoginData] = useState<DoctorLogin>({
+    name: '',
     email: '',
     password: ''
   });

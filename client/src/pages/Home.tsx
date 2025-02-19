@@ -1,6 +1,9 @@
 
 import { Link } from "react-router-dom";
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 const Homepage = () => {
   return (

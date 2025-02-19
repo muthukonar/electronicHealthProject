@@ -1,28 +1,33 @@
 import { DoctorData } from "../interfaces/DoctorData";
+<<<<<<< Updated upstream
 import React, { useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
+=======
+import React from "react";
+>>>>>>> Stashed changes
 
-
-interface DoctorProfileProps {
-    doctor: DoctorData;
-  }
-  
-const DoctorProfile: React.FC<DoctorProfileProps> = ({ doctor: initialDoctor }) => {
-  const [thisDoctor, setThisDoctor] = useState<DoctorData | null>(initialDoctor);
+const DoctorProfile: React.FC = () => {
+  const [thisDoctor, setThisDoctor] = useState<DoctorData>();
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-      const fetchDoctorData = async () => {
+      const fetchDoctorProfile = async () => {
           try {
+              const token = localStorage.getItem("token");
+              if (!token) {
+                  throw new Error("Not authenticated");
+              }
               const response = await fetch("/api/doctors/me", {
                   method: "GET",
                   headers: {
-                      "Authorization": `Bearer ${localStorage.getItem("token")}`,  // Assuming token-based auth
+                      "Authorization": `Bearer ${token}`,  // Assuming token-based auth
                       "Content-Type": "application/json"
                     }
                 });
 
-                if (!response.ok) {
+                if (response.status === 401) {
                     throw new Error("Failed to fetch doctor data");
                 }
 
@@ -30,32 +35,34 @@ const DoctorProfile: React.FC<DoctorProfileProps> = ({ doctor: initialDoctor }) 
                 setThisDoctor(data);
             } catch (error) {
                 setError((error as Error).message);
+                if ((error as Error).message.includes("Not authenticated")) {
+                    navigate("/DrLogin");
+                }
             } finally {
                 setLoading(false);
             }
         };
-        fetchDoctorData();
-    }, []);
+        fetchDoctorProfile();
+    }, [navigate]);
     if (loading) return <p>Loading doctor profile...</p>;
     if (error) return <p>Error: {error}</p>;
 
-    if (!thisDoctor) return <p>No doctor data available.</p>;
 
 return (
       <div>
         <h2>Doctor Profile</h2>
         <div>
-          <p><strong>ID:</strong> {thisDoctor.dr_id ?? "N/A"}</p>
-          <p><strong>Name:</strong> {thisDoctor.dr_name ?? "N/A"}</p>
-          <p><strong>Email:</strong> {thisDoctor.email ?? "N/A"}</p>
-          <p><strong>Specialization:</strong> {thisDoctor.specialization ?? "N/A"}</p>
+          <p><strong>ID:</strong> {thisDoctor?.doctor.dr_id ?? "N/A"}</p>
+          <p><strong>Name:</strong> {thisDoctor?.doctor.dr_name ?? "N/A"}</p>
+          <p><strong>Email:</strong> {thisDoctor?.doctor.email ?? "N/A"}</p>
+          <p><strong>Specialization:</strong> {thisDoctor?.doctor.specialization ?? "N/A"}</p>
         </div>
   
         <div>
           <h3>Patients Assigned</h3>
-          {thisDoctor.patient_id && thisDoctor.patient_id.length > 0 ? (
+          {thisDoctor?.doctor?.patient_id?.length ?? 0 > 0 ? (
             <ul>
-              {thisDoctor.patient_id.map((id, index) => (
+              {thisDoctor?.doctor?.patient_id?.map((id, index) => (
                 <li key={index}>{id}</li>
               ))}
             </ul>

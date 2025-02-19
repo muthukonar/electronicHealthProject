@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/DrProfile',
-        element: <DoctorProfile />
+        element: <DoctorProfile doctor={{dr_id: 0, dr_name: '', email: '', specialization: '', patient_id:[]}} />
       } ,
     ]
   }

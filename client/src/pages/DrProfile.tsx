@@ -1,6 +1,10 @@
 import { DoctorData } from "../interfaces/DoctorData";
+<<<<<<< Updated upstream
 import React, { useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
+=======
+import React from "react";
+>>>>>>> Stashed changes
 
 const DoctorProfile: React.FC = () => {
   const [thisDoctor, setThisDoctor] = useState<DoctorData>();

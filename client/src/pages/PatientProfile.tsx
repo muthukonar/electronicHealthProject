@@ -1,7 +1,10 @@
 
 import React from "react";
 import { PatientData } from "../interfaces/PatientData";
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 interface PatientProfileProps {
   patient: PatientData;

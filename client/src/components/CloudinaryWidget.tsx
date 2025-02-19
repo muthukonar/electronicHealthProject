@@ -5,7 +5,7 @@ declare global {
     cloudinary: {
       createUploadWidget: (
         options: { cloudName: string; uploadPreset: string },
-        callback: (error: string, result: object) => void
+        callback: (error: string, result: {event:string, info:{secure_url:string} }) => void
       ) => { open: () => void };
     };
   }

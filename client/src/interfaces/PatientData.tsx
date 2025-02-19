@@ -6,4 +6,6 @@ export interface PatientData {
   weight: number | null;
   age: number | null;
   dr_id: number | null;
+  //! adding image url to patient data
+  image_url?: string | null;
 }

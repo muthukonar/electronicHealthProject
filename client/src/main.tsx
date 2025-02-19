@@ -10,6 +10,7 @@ import PatientSignup from './pages/PatientSignup.tsx';
 import DrSignUp from './pages/DrSignup.tsx';
 import PatientProfile from './pages/PatientProfile.tsx';
 import DoctorProfile from './pages/DrProfile.tsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/PatientProfile',
-        element: <PatientProfile patient={{ patient_id: 0, patient_name: '', email: '', height: 0, weight: 0, age: 0, dr_id: 0 }} />
+        element: <PatientProfile  />
       },
       {
         path: '/DrProfile',

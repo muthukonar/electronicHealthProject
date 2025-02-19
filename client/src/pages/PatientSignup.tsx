@@ -7,13 +7,18 @@ import PatientAuthService from '../utils/patientAuth';  // Import the Auth utili
 import { signUp } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 
+import { Link } from "react-router-dom";
+//!This is the Import for the Widget
+import UploadWidget from "../components/CloudinaryWidget";
 
 const PatientSignup = () => {
   // State to manage the login form data
   const [signUpData, setSignUpData] = useState<PatientLogin>({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    //! adding the image_url data here
+    image_url: '',
   });
 
   // Handle changes in the input fields
@@ -24,7 +29,11 @@ const PatientSignup = () => {
       [name]: value
     });
   };
-
+//! sets image url
+  const handleImageUpload = (url: string) => {
+    setSignUpData({...signUpData, image_url: url});
+  }
+//!---------------
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -74,13 +83,34 @@ const PatientSignup = () => {
             onChange={handleChange}
           />
         </div>
+
+       {/* Inserted the widget here */}
+        <div className="form-group">
+          <label>Upload Profile Picture</label>
+          <UploadWidget setImageUrl={handleImageUpload} />
+          {signUpData.image_url && (
+            <img src={signUpData.image_url} alt="Profile Preview" width="100" />
+          )}
+        </div>
+      
         {/* Submit button for the sign up form */}
         <div className="form-group">
           <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
       </form>
 
+
+
+       {/*patient signup button*/}
+       <div className="hp-loginlinks">
+        <h4>Not yet enrolled? Signup here:</h4>
+      <Link to="/PatientSignup" className="btn btn-secondary">
+          Patient Signup
+      </Link>
+        </div>     
+
     </div>
+    
   )
 };
 

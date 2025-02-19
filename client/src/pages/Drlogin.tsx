@@ -47,7 +47,7 @@ const DrLogin = () => {
   };
 
   return (
-    <div className='form-container'>
+    <div className='form-container my-5 col-12 col-md-6 mb-4'>
       <form className='form login-form' onSubmit={handleSubmit}>
         <h1>Login</h1>
         {/* Username input field */}

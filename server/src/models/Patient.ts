@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 // Define the attributes for the Patient model
 interface PatientAttr {
   patient_id: number;
-  patient_name: string;
+  patient_name?: string;
   email: string;
   password: string;
   height?: number;
@@ -56,7 +56,7 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
       },
       patient_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,

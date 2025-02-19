@@ -28,18 +28,18 @@ export const patientLogin = async (req: Request, res: Response) => {
   const secretKey = process.env.JWT_SECRET_KEY || '';
 
   // Generate a JWT token for the authenticated user
-  const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ email, image_url:patient.image_url, id: patient.patient_id }, secretKey, { expiresIn: '1h' });
   console.log(token);
   return res.json({ token,
-     //!added patient_name and image url to the return
-    image_url: patient.image_url
+     
+    
    });  // Send the token as a JSON response
 };
 
 export const patientSignUp = async (req: Request, res: Response) => {
   try {
-    const { patient_name, email, password } = req.body;
-    const newPatient = await Patient.create({ patient_name, email, password });
+    const { patient_name, email, password, image_url } = req.body;
+    const newPatient = await Patient.create({ patient_name, email, password, image_url });
 
     console.log(newPatient);
     
@@ -47,7 +47,7 @@ export const patientSignUp = async (req: Request, res: Response) => {
     const secretKey = process.env.JWT_SECRET_KEY || '';
 
     // Generate a JWT token for the authenticated user
-    const token = jwt.sign({ username: newPatient.email }, secretKey, { expiresIn: '1h' });
+    const token = jwt.sign({ email: newPatient.email, patient_id: newPatient.patient_id}, secretKey, { expiresIn: '1h' });
     res.json({ token });  // Send the token as a JSON response
     // res.status(201).json(newUser);
   } catch (error: any) {

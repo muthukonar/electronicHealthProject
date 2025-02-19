@@ -12,6 +12,9 @@ interface PatientAttr {
   age?: number;
   dr_id?: number;
   notes?: string;
+  //! Added image to interface
+  profileImage?: string;
+  //!---------
 }
 
 // Define the optional attributes for creating a new Patient
@@ -28,6 +31,9 @@ export class Patient extends Model<PatientAttr, PatientCreationAttributes> imple
   public age?: number;
   public dr_id?: number;
   public notes?: string;
+  //! Added image to Patient Model
+  public profileImage?: string;
+  //!------------------
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -87,6 +93,12 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      //! Adding field for image url to be set. Going to set allowNull to true for now but there is
+      profileImage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
+      //! an argument to enforce a profile pic for patients profile, lmk.
     },
     {
       tableName: 'patients',

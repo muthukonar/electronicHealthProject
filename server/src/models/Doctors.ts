@@ -8,6 +8,9 @@ interface DrAttr {
   email: string;
   password: string;
   specialization?: string;
+  //! adding the image field to the interface just to keep best practice
+  profileImage?: string;
+  //! Hope the red isn't freaking you guys out
 }
 
 // Define the optional attributes for creating a new Doctor
@@ -20,6 +23,9 @@ export class Dr extends Model<DrAttr, DrCreationAttributes> implements DrAttr {
   public email!: string;
   public password!: string;
   public specialization?: string;
+  //! this is where the image url is going to be stored
+  public profileImage?: string;
+  //!--------------------------
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -56,7 +62,13 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
       specialization: {
         type: DataTypes.STRING,
         allowNull: true,
-      }
+      },
+      //! Field added for image, i set the allowNull to true to allow doctors to not upload an image
+      profileImage: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      //!---------------------
     },
     {
       tableName: 'doctors',

@@ -11,7 +11,7 @@ declare global {
   }
 }
 
-const UploadWidget = () => {
+const UploadWidget = ({ setImageUrl }: { setImageUrl: (url: string) => void }) => {
   const cloudinaryRef = useRef<typeof window.cloudinary | null>(null);
   const widgetRef = useRef<{ open: () => void } | null>(null);
 
@@ -26,18 +26,19 @@ const UploadWidget = () => {
         (error, result) => {
           if (error) {
             console.error("Upload error:", error);
-          } else {
-            console.log("Upload result:", result);
+          } else if (result.event === "success") {
+            console.log("Upload result:", result.info.secure_url);
+            setImageUrl(result.info.secure_url); 
           }
         }
       );
     } else {
       console.error("Cloudinary is not loaded");
     }
-  }, []);
+  }, [setImageUrl]);
 
   return (
-    <button onClick={() => widgetRef.current?.open()}>
+    <button type="button" onClick={() => widgetRef.current?.open()}>
       Upload Profile Picture
     </button>
   );

@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt';  // Import the bcrypt library for password hashing
 
 // Login function to authenticate a patient
 export const patientLogin = async (req: Request, res: Response) => {
-  const { email, password } = req.body;  // Extract username and password from request body
+  const { email, password, } = req.body;  // Extract username and password from request body
 
   // Find the patient in the database by username
   const patient = await Patient.findOne({
@@ -29,7 +29,10 @@ export const patientLogin = async (req: Request, res: Response) => {
 
   // Generate a JWT token for the authenticated user
   const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
-  return res.json({ token });  // Send the token as a JSON response
+  return res.json({ token,
+    //!added patient_name and image url to the return
+     patient_name: patient.patient_name,
+     image_url: patient.image_url });  // Send the token as a JSON response
 };
 
 export const patientSignUp = async (req: Request, res: Response) => {

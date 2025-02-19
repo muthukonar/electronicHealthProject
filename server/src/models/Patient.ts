@@ -13,7 +13,7 @@ interface PatientAttr {
   dr_id?: number;
   notes?: string;
   //! Added image to interface
-  profileImage?: string;
+  image_url?: string;
   //!---------
 }
 
@@ -32,7 +32,7 @@ export class Patient extends Model<PatientAttr, PatientCreationAttributes> imple
   public dr_id?: number;
   public notes?: string;
   //! Added image to Patient Model
-  public profileImage?: string;
+  public image_url?: string;
   //!------------------
 
   public readonly createdAt!: Date;
@@ -94,7 +94,7 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
         allowNull: true,
       },
       //! Adding field for image url to be set. Going to set allowNull to true for now but there is
-      profileImage: {
+      image_url: {
         type: DataTypes.STRING,
         allowNull: true,
       }

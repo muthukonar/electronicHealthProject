@@ -11,7 +11,9 @@ const PatientSignup = () => {
   // State to manage the login form data
   const [signUpData, setSignUpData] = useState<PatientLogin>({
     email: '',
-    password: ''
+    password: '',
+    //! adding the image_url data here
+    image_url: '',
   });
 
   // Handle changes in the input fields
@@ -22,7 +24,11 @@ const PatientSignup = () => {
       [name]: value
     });
   };
-
+//! sets image url
+  const handleImageUpload = (url: string) => {
+    setSignUpData({...signUpData, image_url: url});
+  }
+//!---------------
   // Handle form submission for login
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -62,6 +68,16 @@ const PatientSignup = () => {
             onChange={handleChange}
           />
         </div>
+
+       {/* Inserted the widget here */}
+        <div className="form-group">
+          <label>Upload Profile Picture</label>
+          <UploadWidget setImageUrl={handleImageUpload} />
+          {signUpData.image_url && (
+            <img src={signUpData.image_url} alt="Profile Preview" width="100" />
+          )}
+        </div>
+      
         {/* Submit button for the sign up form */}
         <div className="form-group">
           <button className="btn btn-primary" type='submit'>Sign Up</button>
@@ -75,12 +91,7 @@ const PatientSignup = () => {
       <Link to="/PatientSignup" className="btn btn-secondary">
           Patient Signup
       </Link>
-        </div>
-        
-      <div>
-        <UploadWidget/>
-      </div>
-      
+        </div>     
     </div>
     
   )

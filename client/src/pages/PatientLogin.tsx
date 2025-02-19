@@ -9,7 +9,10 @@ const NewPatientLogin = () => {
   // State to manage the login form data
   const [loginData, setLoginData] = useState<PatientLogin>({
     email: '',
-    password: ''
+    password: '',
+    //! includes image url in new patient login
+    image_url: '',
+    //!
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Handle changes in the input fields
@@ -31,6 +34,9 @@ const NewPatientLogin = () => {
       if (data.token && data.patientId) {
               Auth.login(data.token); // Store token
               localStorage.setItem("patientId", data.patientId); // Store patientId
+              //!sets image_url to local storage
+              localStorage.setItem("image_url", data.image_url);
+              //!------
               setIsLoggedIn(true);
             } else {
               alert("Login failed. Invalid credentials.");

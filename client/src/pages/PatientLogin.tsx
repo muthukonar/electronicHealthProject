@@ -9,7 +9,10 @@ const NewPatientLogin = () => {
   const [loginData, setLoginData] = useState<PatientLogin>({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    //! includes image url in new patient login
+    image_url: '',
+    //!
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Handle changes in the input fields

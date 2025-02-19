@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 // Define the attributes for the Patient model
 interface PatientAttr {
   patient_id: number;
-  patient_name?: string | null;
+  patient_name?: string;
   email: string;
   password: string;
   height?: number;
@@ -12,6 +12,9 @@ interface PatientAttr {
   age?: number;
   dr_id?: number;
   notes?: string;
+  //! Added image to interface
+  image_url?: string;
+  //!---------
 }
 
 // Define the optional attributes for creating a new Patient
@@ -28,6 +31,9 @@ export class Patient extends Model<PatientAttr, PatientCreationAttributes> imple
   public age?: number;
   public dr_id?: number;
   public notes?: string;
+  //! Added image to Patient Model
+  public image_url?: string;
+  //!------------------
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -50,7 +56,7 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
       },
       patient_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -87,6 +93,12 @@ export function PatientFactory(sequelize: Sequelize): typeof Patient {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      //! Adding field for image url to be set. Going to set allowNull to true for now but there is
+      image_url: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
+      //! an argument to enforce a profile pic for patients profile, lmk.
     },
     {
       tableName: 'patients',

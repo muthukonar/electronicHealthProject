@@ -42,7 +42,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/PatientProfile',
-        element: <PatientProfile patient={{ patient_id: 0, patient_name: '', email: '', height: 0, weight: 0, age: 0, dr_id: 0 }} />
+        element: <PatientProfile  />
       },
       {
         path: '/DrProfile',

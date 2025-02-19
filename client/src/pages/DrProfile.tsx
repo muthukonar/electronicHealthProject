@@ -29,7 +29,7 @@ const DoctorProfile: React.FC<DoctorProfileProps> = ({ doctor: initialDoctor }) 
                 const data: DoctorData = await response.json();
                 setThisDoctor(data);
             } catch (error) {
-                setError(error.message);
+                setError((error as Error).message);
             } finally {
                 setLoading(false);
             }

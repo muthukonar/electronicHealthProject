@@ -10,6 +10,7 @@ import PatientSignup from './pages/PatientSignup.tsx';
 import DrSignUp from './pages/DrSignup.tsx';
 import PatientProfile from './pages/PatientProfile.tsx';
 import DoctorProfile from './pages/DrProfile.tsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const router = createBrowserRouter([

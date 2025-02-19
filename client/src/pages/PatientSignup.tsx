@@ -1,15 +1,16 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
 import PatientAuthService from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { signUp } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
+
 import { Link } from "react-router-dom";
 //!This is the Import for the Widget
 import UploadWidget from "../components/CloudinaryWidget";
-//!---------------
+
 const PatientSignup = () => {
   // State to manage the login form data
   const [signUpData, setSignUpData] = useState<PatientLogin>({
+    name: '',
     email: '',
     password: '',
     //! adding the image_url data here
@@ -57,6 +58,16 @@ const PatientSignup = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="form-group">
+          <label>Name</label>
+          <input 
+            className="form-input"
+            type='text'
+            name='name'
+            value={signUpData.name || ''}
+            onChange={handleChange}
+          />
+        </div>
         {/* Password input field */}
         <div className="form-group">
           <label>Password</label>
@@ -85,6 +96,7 @@ const PatientSignup = () => {
       </form>
 
 
+
        {/*patient signup button*/}
        <div className="hp-loginlinks">
         <h4>Not yet enrolled? Signup here:</h4>
@@ -92,6 +104,7 @@ const PatientSignup = () => {
           Patient Signup
       </Link>
         </div>     
+
     </div>
     
   )

@@ -13,7 +13,7 @@ export async function fetchNotes(): Promise<Notes[]> {
       const data: Notes[] = await response.json();
       return data;
     } catch (error) {
-      console.error('Error in fetchPatients:', error);
+      console.error('Error in fetchNotes:', error);
       throw error; // Rethrow for higher-level handling
     }
   }

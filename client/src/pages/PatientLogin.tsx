@@ -11,7 +11,7 @@ const NewPatientLogin = () => {
     email: '',
     password: ''
   });
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Handle changes in the input fields
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,7 +28,13 @@ const NewPatientLogin = () => {
       // Call the login API endpoint with loginData
       const data = await login(loginData);
       // If login is successful, call Auth.login to store the token in localStorage
-      Auth.login(data.token);
+      if (data.token && data.patientId) {
+              Auth.login(data.token); // Store token
+              localStorage.setItem("patientId", data.patientId); // Store patientId
+              setIsLoggedIn(true);
+            } else {
+              alert("Login failed. Invalid credentials.");
+            }
     } catch (err) {
       console.error('Failed to login', err);  // Log any errors that occur during login
     }
@@ -65,7 +71,12 @@ const NewPatientLogin = () => {
           <button className="btn btn-primary" type='submit'>Login button</button>
         </div>
       </form>
-
+      {isLoggedIn && ( 
+        <div>
+          <p>Login successful! Click below to continue:</p>
+          <Link to="/PatientProfile" className="btn btn-success">Go to Profile</Link>
+        </div>
+      )}
      <div> <h1>Not yet a member? Signup Here</h1>
   
   <Link to="/PatientSignup" className="btn btn-primary">

@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 // Define the attributes for the Patient model
 interface PatientAttr {
   patient_id: number;
-  patient_name: string;
+  patient_name?: string | null;
   email: string;
   password: string;
   height?: number;
@@ -20,7 +20,7 @@ interface PatientCreationAttributes extends Optional<PatientAttr, 'patient_id'> 
 // Define the Patient class extending Sequelize's Model
 export class Patient extends Model<PatientAttr, PatientCreationAttributes> implements PatientAttr {
   public patient_id!: number;
-  public patient_name!: string;
+  public patient_name?: string | null;
   public email!: string;
   public password!: string;
   public height?: number;

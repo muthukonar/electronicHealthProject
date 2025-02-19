@@ -7,6 +7,7 @@ import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the interfac
 const DrSignup = () => {
   // State to manage the login form data
   const [signUpData, setSignUpData] = useState<DoctorLogin>({
+    name: '',
     email: '',
     password: ''
   });

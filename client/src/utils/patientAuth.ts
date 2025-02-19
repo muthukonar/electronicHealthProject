@@ -46,6 +46,11 @@ class PatientAuthService {
     localStorage.removeItem('id_token');
     window.location.assign('/');
   }
+
+  patientSignup(idToken: string) {
+    localStorage.setItem('id_token', idToken);
+    window.location.assign('/PatientProfile');
+  }
 }
 
 export default new PatientAuthService();

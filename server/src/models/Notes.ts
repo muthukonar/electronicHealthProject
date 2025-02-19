@@ -22,3 +22,4 @@ export async function fetchNotes(): Promise<Notes[]> {
   export function formatNotes(note: Notes): string {
     return `${note.Title}: ${note.Description}`;
   }
+

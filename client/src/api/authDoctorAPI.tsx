@@ -4,7 +4,7 @@ import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the PatientL
 const login = async (drInfo: DoctorLogin) => {
   try {
     // Send a POST request to '/auth/login' with doctor login information in JSON format
-    const response = await fetch('/auth/login', {
+    const response = await fetch('/auth/doctor/doctorLogin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ const login = async (drInfo: DoctorLogin) => {
 const signUp = async (drInfo: DoctorLogin) => {
   try {
     // Send a POST request to '/auth/login' with doctor login information in JSON format
-    const response = await fetch('/auth/signup', {
+    const response = await fetch('/auth/doctor/doctorSignup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 
-import Auth from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
+import PatientAuthService from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { signUp } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ const PatientSignup = () => {
       // Call the sign up API endpoint with signUpData
       const data = await signUp(signUpData);
       // If sign up is successful, call Auth.login to store the token in localStorage
-      Auth.login(data.token);
+      PatientAuthService.login(data.token);
     } catch (err) {
       console.error('Failed to login', err);  // Log any errors that occur during sign up
     }
@@ -43,7 +43,7 @@ const PatientSignup = () => {
           <label>Email</label>
           <input 
             className="form-input"
-            type='text'
+            type='email'
             name='email'
             value={signUpData.email || ''}
             onChange={handleChange}

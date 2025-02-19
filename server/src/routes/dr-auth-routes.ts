@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';  // Import the bcrypt library for password hashing
 // Login function to authenticate a doctor
 export const doctorLogin = async (req: Request, res: Response) => {
   const { email, password } = req.body;  // Extract username and password from request body
-
+  console.log (req.body);
   // Find the doctor in the database by username
   const doctor = await Dr.findOne({
     where: { email },
@@ -16,7 +16,7 @@ export const doctorLogin = async (req: Request, res: Response) => {
   if (!doctor) {
     return res.status(401).json({ message: 'Authentication failed' });
   }
-
+  console.log(doctor.password);
   // Compare the provided password with the stored hashed password
   const doctorPasswordIsValid = await bcrypt.compare(password, doctor.password);
   // If password is invalid, send an authentication failed response
@@ -26,12 +26,12 @@ export const doctorLogin = async (req: Request, res: Response) => {
 
   // Get the secret key from environment variables
   const secretKey = process.env.JWT_SECRET_KEY || '';
-
+  
   // Generate a JWT token for the authenticated user
   const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+  console.log(token);
   return res.json({ token });  // Send the token as a JSON response
 };
-
 export const doctorSignUp = async (req: Request, res: Response) => {
   try {
     const { dr_name,email, password } = req.body;

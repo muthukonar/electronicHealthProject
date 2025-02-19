@@ -46,11 +46,11 @@ const NewPatientLogin = () => {
         <h1>Login</h1>
         {/* Username input field */}
         <div className="form-group">
-          <label>Username</label>
+          <label>Email</label>
           <input 
             className="form-input"
-            type='text'
-            name='username'
+            type='email'
+            name='email'
             value={loginData.email || ''}
             onChange={handleChange}
           />

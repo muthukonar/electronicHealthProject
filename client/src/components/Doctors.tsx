@@ -14,15 +14,15 @@ const DoctorList: React.FC<DoctorListProps> = ({ doctors }) => {
             Doctors on Staff
             </h2>
             {doctors && doctors.map((doctor: DoctorData) => (
-            <div className="row align-center mb-5" key={doctor.dr_id}>
+            <div className="row align-center mb-5" key={doctor.doctor.dr_id}>
                 <div className="col-md-6">
-                <h3>{doctor.dr_id}. {doctor.dr_name}</h3>
+                <h3>{doctor.doctor.dr_id}. {doctor.doctor.dr_name}</h3>
                 </div>
                 <div className="col-md-6">
-                <h4><a href={`mailto:${doctor.email}`}>{doctor.specialization}</a></h4>
+                <h4><a href={`mailto:${doctor.doctor.email}`}>{doctor.doctor.specialization}</a></h4>
                 </div>
                 <div className="col-md-6">
-                <h4>Current Patients: {doctor.patient_id}</h4>    
+                <h4>Current Patients: {doctor.doctor.patient_id}</h4>    
                 
                 </div>
             </div>

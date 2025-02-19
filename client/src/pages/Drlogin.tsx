@@ -1,10 +1,8 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-
-
 import Auth from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
 import { login } from "../api/authPatientAPI";  // Import the login function from the API
-import DoctorAuthService from '../utils/doctorAuth';
-import PatientAuthService from "../utils/patientAuth";
+// import DoctorAuthService from '../utils/doctorAuth';
+// import PatientAuthService from "../utils/patientAuth";
 import { DoctorLogin } from "../interfaces/DoctorLogin";  
 import { Link } from "react-router-dom";
 
@@ -15,7 +13,7 @@ const DrLogin = () => {
     email: '',
     password: ''
   });
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Handle changes in the input fields
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -35,7 +33,7 @@ const DrLogin = () => {
       if (data.token && data.doctorId) {
         Auth.login(data.token); // Store token
         localStorage.setItem("doctorId", data.doctorId); // Store doctorId
-        login(data.doctorId); // Pass doctorId to parent component
+        setIsLoggedIn(true);
       } else {
         alert("Login failed. Invalid credentials.");
       }
@@ -75,6 +73,12 @@ const DrLogin = () => {
           <button className="btn btn-primary" type='submit'>Login</button>
         </div>
       </form>
+      {isLoggedIn && ( 
+        <div>
+          <p>Login successful! Click below to continue:</p>
+          <Link to="/DrProfile" className="btn btn-success">Go to Profile</Link>
+        </div>
+      )}
 
       <div> <h1>Not yet a member? Signup Here</h1>
   

@@ -33,15 +33,9 @@ const DrLogin = () => {
       const data = await login(loginData);
       console.log(data);
       // If login is successful, call Auth.login to store the token in localStorage
-<<<<<<< Updated upstream
       if (data.token) {
         DrAuthService.login(data.token); // Store token
         // localStorage.setItem(data.token); // Store doctorId
-=======
-      if (data.token && data.doctorId) {
-        DrAuthService.login(data.token); // Store token
-        localStorage.setItem("doctorId", data.doctorId); // Store doctorId
->>>>>>> Stashed changes
         setIsLoggedIn(true);
         // navigate to the doctor profile page
         navigate('/DrProfile');

@@ -60,7 +60,7 @@ const PatientProfile: React.FC = () => {
         <p><strong>Height:</strong> {patient.height ? `${patient.height} cm` : "N/A"}</p>
         <p><strong>Weight:</strong> {patient.weight ? `${patient.weight} kg` : "N/A"}</p>
         <p><strong>Age:</strong> {patient.age ?? "N/A"}</p>
-        <p><strong>Assigned Doctor:</strong> {patient.dr_id ?? "N/A"}</p>
+        <p><strong>Assigned Doctor ID:</strong> {patient.dr_id ?? "N/A"}</p>
       </div>
       </div>
     )}

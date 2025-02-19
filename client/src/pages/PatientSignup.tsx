@@ -1,8 +1,4 @@
 import { useState, FormEvent, ChangeEvent } from "react";
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 import PatientAuthService from '../utils/patientAuth';  // Import the Auth utility for managing authentication state
 import { signUp } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin

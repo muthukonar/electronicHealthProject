@@ -9,7 +9,7 @@ const Homepage = () => {
       <p>Please choose your login type:</p>
 
       {/* Doctor login */}
-      <Link to="/DoctorLogin" className="btn btn-primary">
+      <Link to="/Drlogin" className="btn btn-primary">
         Doctor Login
       </Link>
 

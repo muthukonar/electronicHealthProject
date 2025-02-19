@@ -4,7 +4,9 @@ import Auth from '../utils/patientAuth';  // Import the Auth utility for managin
 import { signUp } from "../api/authPatientAPI";  // Import the login function from the API
 import { PatientLogin } from "../interfaces/PatientLogin";  // Import the interface for UserLogin
 import { Link } from "react-router-dom";
-
+//!This is the Import for the Widget
+import UploadWidget from "../components/CloudinaryWidget";
+//!---------------
 const PatientSignup = () => {
   // State to manage the login form data
   const [signUpData, setSignUpData] = useState<PatientLogin>({
@@ -74,8 +76,13 @@ const PatientSignup = () => {
           Patient Signup
       </Link>
         </div>
-
+        
+      <div>
+        <UploadWidget/>
+      </div>
+      
     </div>
+    
   )
 };
 

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { PatientLogin } from "../interfaces/PatientLogin";
 
 
-
 const Homepage = () => {
   return (
     <div className="hp-loginlinks">

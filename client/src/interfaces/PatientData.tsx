@@ -1,5 +1,4 @@
 export interface PatientData {
-  patient_id: number | null;
   patient_name: string | null;
   email: string | null;
   height: number | null; 

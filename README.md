@@ -31,6 +31,13 @@
 
 ## Screenshots / Videos
 
+!["Screenshot1”](./client/src/assets/SS1.png )
+!["Screenshot2”](./client/src/assets/SS2.png )
+
+
+Deployed link: https://electronichealthproject.onrender.com/
+
+Video link : https://drive.google.com/file/d/1GGb0O1-LW--vixneNW1Mu6CSafe1Tkao/view?usp=drive_link 
 
 
 

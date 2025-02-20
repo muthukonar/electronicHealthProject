@@ -22,8 +22,7 @@ const DoctorList: React.FC<DoctorListProps> = ({ doctors }) => {
                 <h4><a href={`mailto:${doctor.email}`}>{doctor.specialization}</a></h4>
                 </div>
                 <div className="col-md-6">
-                <h4>Current Patients: {doctor.patient_id}</h4>    
-                
+                <h4>Current Patients: {doctor.patients.length}</h4>                    
                 </div>
             </div>
             ))}

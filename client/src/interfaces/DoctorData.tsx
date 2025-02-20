@@ -7,4 +7,5 @@ export interface DoctorData {
   specialization: string | null;
   patients: Array<PatientData>;
   image_url?: string | null;
+  assignedPatients: number[] | null;
 }

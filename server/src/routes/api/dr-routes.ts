@@ -20,10 +20,11 @@ drRouter.get('/', async (_req: Request, res: Response) => {
 
 // GET /doctors/:doctor_id - Get a doctor by doctor_id
 drRouter.get('/:id', async (req: Request, res: Response) => {
-    const { dr_id } = req.params;
+    const { id } = req.params;
+    console.log (id);
     try {
-      const dr = await Dr.findByPk(dr_id, {
-        attributes: { exclude: ['password'] }
+      const dr = await Dr.findByPk(id, {
+        // attributes: { exclude: ['password'] }
       });
       if (dr) {
         res.json(dr);

@@ -13,7 +13,10 @@ const DrLogin = () => {
   const [loginData, setLoginData] = useState<DoctorLogin>({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    //! includes image url in new doctor login
+    image_url: '',
+    //!
   });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Handle changes in the input fields

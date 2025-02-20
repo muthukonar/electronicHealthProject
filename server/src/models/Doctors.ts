@@ -63,6 +63,7 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
         type: DataTypes.STRING,
         allowNull: true,
       },
+
       //! Field added for image, i set the allowNull to true to allow doctors to not upload an image
       image_url: {
         type: DataTypes.STRING,

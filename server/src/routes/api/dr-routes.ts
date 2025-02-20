@@ -1,6 +1,7 @@
 import express from 'express';
 import type { Request, Response } from 'express';
 import { Dr } from '../../models/index.js';
+import bcrypt from 'bcrypt';
 
 const drRouter = express.Router();
 
@@ -27,7 +28,7 @@ drRouter.get('/:id', async (req: Request, res: Response) => {
       if (dr) {
         res.json(dr);
       } else {
-        res.status(404).json({ message: 'User not found' });
+        res.status(404).json({ message: 'Doctor not found' });
       }
     } catch (error: any) {
       res.status(500).json({ message: error.message });
@@ -42,17 +43,21 @@ drRouter.put('/:dr_id', async (req: Request, res: Response) => {
     const { email, password } = req.body;
     try {
       const dr = await Dr.findByPk(dr_id);
-      if (dr) {
-        dr.email = email;
-        dr.password = password;
-        await dr.save();
-        res.json(dr);
-      } else {
-        res.status(404).json({ message: 'User not found' });
+      if (!dr) {
+        return res.status(404).json({ message: 'Patient not found' });
       }
+      
+      if (email) dr.email = email;
+      if (password) {
+      dr.password = await bcrypt.hash(password, 10);
+      }
+      
+      await dr.save();
+      res.json(dr);
     } catch (error: any) {
       res.status(400).json({ message: error.message });
     }
+    return;
   });
 
 // DELETE /doctors/:doctor_id - Delete a doctor by doctor_id
@@ -61,15 +66,15 @@ drRouter.delete('/:dr_id', async (req: Request, res: Response) => {
     const { dr_id } = req.params;
     try {
       const dr = await Dr.findByPk(dr_id);
-      if (dr) {
-        await dr.destroy();
-        res.json({ message: 'User deleted' });
-      } else {
-        res.status(404).json({ message: 'User not found' });
+      if (!dr) {
+        return res.status(404).json({ message: 'Doctor not found' });
       }
+      await dr.destroy();
+      res.json({ message: 'Doctor deleted' });
     } catch (error: any) {
       res.status(500).json({ message: error.message });
     }
+    return;
   });
   
   export { drRouter as drRouter };

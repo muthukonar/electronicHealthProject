@@ -28,7 +28,7 @@ export const doctorLogin = async (req: Request, res: Response) => {
   const secretKey = process.env.JWT_SECRET_KEY || '';
   
   // Generate a JWT token for the authenticated user
-  const token = jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+  const token = jwt.sign({ email, image_url:doctor.image_url, dr_id: doctor.dr_id }, secretKey, { expiresIn: '1h' });
   console.log(token);
   return res.json({ token,
 

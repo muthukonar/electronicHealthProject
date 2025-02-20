@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from "react";
 import DrAuthService from '../utils/doctorAuth';  // Import the Auth utility for managing authentication state
-import { login } from "../api/authDoctorAPI";  // Import the login function from the API
+import { drLogin } from "../api/authDoctorAPI";  // Import the login function from the API
 // import DoctorAuthService from '../utils/doctorAuth';
 // import PatientAuthService from "../utils/patientAuth";
 import { DoctorLogin } from "../interfaces/DoctorLogin";  
@@ -33,7 +33,7 @@ const DrLogin = () => {
     e.preventDefault();
     try {
       // Call the login API endpoint with loginData
-      const data = await login(loginData);
+      const data = await drLogin(loginData);
       console.log(data);
       // If login is successful, call Auth.login to store the token in localStorage
       if (data.token) {
@@ -90,7 +90,7 @@ const DrLogin = () => {
 
       <div> <h1>Not yet a member? Signup Here</h1>
   
-  <Link to="/DoctorSignup" className="btn btn-primary">
+  <Link to="/DrSignup" className="btn btn-primary">
   Doctor Signup
 </Link>
         </div>

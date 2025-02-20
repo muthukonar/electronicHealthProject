@@ -1,7 +1,7 @@
 import { DoctorLogin } from "../interfaces/DoctorLogin";  // Import the PatientLogin interface for typing doctorInfo
 
 // Function to send a POST request to the '/auth/login' endpoint with doctor login information
-const login = async (drInfo: DoctorLogin) => {
+const drLogin = async (drInfo: DoctorLogin) => {
   try {
     // Send a POST request to '/auth/login' with doctor login information in JSON format
     const response = await fetch('/auth/doctor/doctorLogin', {
@@ -28,7 +28,7 @@ const login = async (drInfo: DoctorLogin) => {
   }
 }
 
-const signUp = async (drInfo: DoctorLogin) => {
+const drSignUp = async (drInfo: DoctorLogin) => {
   try {
     // Send a POST request to '/auth/login' with doctor login information in JSON format
     const response = await fetch('/auth/doctor/doctorSignup', {
@@ -55,4 +55,4 @@ const signUp = async (drInfo: DoctorLogin) => {
   }
 }
 
-export { login, signUp };  // Export the login function to be used elsewhere in the application
+export { drLogin, drSignUp };  // Export the login function to be used elsewhere in the application

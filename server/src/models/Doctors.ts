@@ -4,13 +4,14 @@ import bcrypt from 'bcrypt';
 // Define the attributes for the Doctor model
 interface DrAttr {
   dr_id: number;
-  dr_name: string;
+  dr_name?: string;
   email: string;
   password: string;
   specialization?: string;
   //! adding the image field to the interface just to keep best practice
   image_url?: string;
   //! Hope the red isn't freaking you guys out
+  assignedPatients?: number[];
 }
 
 // Define the optional attributes for creating a new Doctor
@@ -19,13 +20,14 @@ interface DrCreationAttributes extends Optional<DrAttr, 'dr_id'> {}
 // Define the Doctor class extending Sequelize's Model
 export class Dr extends Model<DrAttr, DrCreationAttributes> implements DrAttr {
   public dr_id!: number;
-  public dr_name!: string;
+  public dr_name?: string;
   public email!: string;
   public password!: string;
   public specialization?: string;
   //! this is where the image url is going to be stored
   public image_url?: string;
   //!--------------------------
+  assignedPatients?: number[];
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
@@ -48,7 +50,7 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
       },
       dr_name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -70,6 +72,10 @@ export function DrFactory(sequelize: Sequelize): typeof Dr {
         allowNull: true,
       },
       //!---------------------
+      assignedPatients: {
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        allowNull: true,
+      },
     },
     {
       tableName: 'doctors',

@@ -1,13 +1,14 @@
+// import { assert } from 'node:console';
 import { Dr , Patient } from '../models/index.js';
 
 export const seedUsers = async () => {
   
     // Seeding Doctor data
   await Dr.bulkCreate([
-    {dr_name: 'Muthu Konar', email: 'mk@clinic.com', password: 'password', specialization: 'Cardiology'},
-    {dr_name: 'Chad Abramson', email: 'ca@clinic.com', password: 'password', specialization: 'Dermatology'},
-    {dr_name: 'Jason Gerdes', email: 'jg@clinic.com', password: 'password', specialization: 'Nuero'}, 
-    {dr_name: 'Jazmin Guillen', email: 'jaz@clinic.com', password: 'password', specialization: 'Pediatric'},
+    {dr_name: 'Muthu Konar', email: 'mk@clinic.com', password: 'password', specialization: 'Cardiology', assignedPatients: [1]},
+    {dr_name: 'Chad Abramson', email: 'ca@clinic.com', password: 'password', specialization: 'Dermatology', assignedPatients: [2]},
+    {dr_name: 'Jason Gerdes', email: 'jg@clinic.com', password: 'password', specialization: 'Nuero', assignedPatients: [5,3]},
+    {dr_name: 'Jazmin Guillen', email: 'jaz@clinic.com', password: 'password', specialization: 'Pediatric', assignedPatients: [4]},
   ], { individualHooks: true });
 
   // Seeding Patient data

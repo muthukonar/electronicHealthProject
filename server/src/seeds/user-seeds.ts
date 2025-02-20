@@ -10,7 +10,7 @@ export const seedUsers = async () => {
     {dr_name: 'Jason Gerdes', email: 'jg@clinic.com', password: 'password', specialization: 'Nuero', assignedPatients: [5,3]},
     {dr_name: 'Jazmin Guillen', email: 'jaz@clinic.com', password: 'password', specialization: 'Pediatric', assignedPatients: [4]},
   ], { individualHooks: true });
-
+  console.log('Seeding data...');
   // Seeding Patient data
   await Patient.bulkCreate([
     {patient_name: 'John Doe',email: 'john@gmail.com',password: 'password',height: 180,weight: 75,age: 35,dr_id: 1,notes: 'Patient has a history of high blood pressure',image_url:'https://media.licdn.com/dms/image/v2/D5603AQH1eGAgY2SKMA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1712356138604?e=1745452800&v=beta&t=GaJ_6oznoNmYzY9GnvDy-dIhymN5Ib6knpwD0xB5cio'},
@@ -22,3 +22,5 @@ export const seedUsers = async () => {
 
   console.log('Seed data has been successfully inserted!');
 };
+
+

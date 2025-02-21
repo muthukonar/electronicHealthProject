@@ -11,6 +11,9 @@
   ## Description
   Our project is a secure and user-friendly Electronic Health Record (EHR) system designed to enhance communication between patients and family doctors. The platform enables:Patients to connect with their family doctors, view their profile and health records, and receive personalized health tips.Doctors to access their profile, manage patient details, and provide medical feedback using an external API for health insights.Built with React, Node.js, JWT authentication, HTML, CSS, and TypeScript, the system ensures privacy, efficiency, and accessibility in managing healthcare interactions.
 
+  # Disclaimer
+  This project is developed solely for educational and research purposes. It is not intended for commercial use, real-world deployment, or handling actual patient data. Any resemblance to real medical systems is purely coincidental. The project does not guarantee compliance with healthcare regulations such as HIPAA or GDPR. Users are advised not to use this project for storing or processing sensitive personal information. The developers assume no responsibility for any misuse, data loss, or security vulnerabilities arising from its use.
+
   ## Table of Contents
 
   - [Installation](#installation)
